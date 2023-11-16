@@ -2,7 +2,7 @@
 
 namespace Services\User\PostService\Contracts;
 
-interface AuthServiceInterface
+interface PostServiceInterface
 {
     //
 }

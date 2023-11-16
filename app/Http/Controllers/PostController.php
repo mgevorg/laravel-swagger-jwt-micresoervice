@@ -6,14 +6,12 @@ use App\Http\Requests\Post\StoreRequest;
 use App\Http\Requests\Post\UpdateRequest;
 use App\Http\Resources\Post\PostResource;
 use App\Models\Post;
-use asd\sdf\Aaa;
-use Illuminate\Http\Request;
 use OpenApi\Annotations as OA;
 
 /**
  * @OA\Info(
  *     title="PostController API",
- *     version="0.1",
+ *     version="1.0",
  * ),
  * @OA\PathItem(
  *     path="/api/"
@@ -51,7 +49,6 @@ class PostController extends Controller
      */
     public function index()
     {
-//        dd(app('services.user.auth-service')->test());
         $posts = Post::all();
         return PostResource::collection($posts);
     }

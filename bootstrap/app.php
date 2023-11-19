@@ -49,6 +49,14 @@ $app->bind(
     'services.user.auth-service',
     Services\User\AuthService\Contracts\AuthServiceInterface::class
 );
+$app->bind(
+    Services\User\PostService\Contracts\AuthServiceInterface::class,
+    Services\User\PostService\ServiceCore\PostService::class,
+);
+$app->bind(
+    'services.user.post-service',
+    Services\User\AuthService\Contracts\AuthServiceInterface::class
+);
 
 /*
 |--------------------------------------------------------------------------

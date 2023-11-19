@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Services\User\PostService\Http\Controllers;
 
-use App\Http\Requests\Post\StoreRequest;
-use App\Http\Requests\Post\UpdateRequest;
-use App\Http\Resources\Post\PostResource;
+use App\Http\Controllers\Controller;
+
+use Services\User\PostService\Http\Requests\StoreRequest;
+use Services\User\PostService\Http\Requests\UpdateRequest;
+use Services\User\PostService\Http\Resources\PostResource;
 use App\Models\Post;
 use OpenApi\Annotations as OA;
 

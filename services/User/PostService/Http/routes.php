@@ -3,8 +3,6 @@
 namespace Services\User\PostService\Http;
 
 use Illuminate\Support\Facades\Route;
-use Services\User\AuthService\Http\Controllers\PostController;
+use Services\User\PostService\Http\Controllers\PostController;
 
-Route::prefix('posts')->middleware('api')->controller(PostController::class)->group(function(){
-
-});
+Route::resource('posts', PostController::class)->middleware("jwt.auth");

@@ -173,6 +173,7 @@ return [
          * Internal Custom Service Providers...
          */
         Services\User\AuthService\Providers\RouteServiceProvider::class,
+        Services\User\PostService\Providers\RouteServiceProvider::class,
     ])->toArray(),
 
     /*

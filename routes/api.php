@@ -17,12 +17,3 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-//Route::prefix('auth')->middleware('api')->controller(\App\Http\Controllers\Api\AuthController::class)->group(function(){
-//    Route::post('login', 'login');
-//    Route::post('user', 'user');
-//    Route::post('logout', 'logout');
-//    Route::post('refresh', 'refresh');
-//});
-
-Route::resource('posts', \App\Http\Controllers\PostController::class)->middleware("jwt.auth");

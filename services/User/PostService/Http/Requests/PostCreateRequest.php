@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Post;
+namespace Services\User\PostService\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 
-class UpdateRequest extends FormRequest
+
+class PostCreateRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,13 +18,13 @@ class UpdateRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
     public function rules(): array
     {
         return [
-            'title' => 'required|string',
-            'likes' => 'required|integer'
+            //
         ];
     }
 }
+

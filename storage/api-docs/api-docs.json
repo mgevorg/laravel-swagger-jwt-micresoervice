@@ -6,13 +6,71 @@
     },
     "paths": {
         "/api/": {},
+        "/api/auth/login/": {
+            "post": {
+                "tags": [
+                    "Authorization"
+                ],
+                "summary": "User login and get token.",
+                "operationId": "068f12b93c65e63717e80c4e37a565fe",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "email": {
+                                                "type": "string",
+                                                "example": "user@user.user"
+                                            },
+                                            "password": {
+                                                "type": "string",
+                                                "example": "password"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "access_token": {
+                                            "type": "string",
+                                            "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNjk5OTY1OTc5LCJleHAiOjE2OTk5Njk1NzksIm5iZiI6MTY5OTk2NTk3OSwianRpIjoiMWpVeVpGVWYzdlpZRnJDcyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.dlAUe2hCZSviHBlkUlTw_R8YGyhUUZx-cSyyfNey2Mc"
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "example": "Bearer"
+                                        },
+                                        "expires_in": {
+                                            "type": "integer",
+                                            "example": 3600
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/posts/": {
             "get": {
                 "tags": [
                     "Post"
                 ],
                 "summary": "Display a listing of the post resource.",
-                "operationId": "4b9595e240873ad2074cc64a5eac9430",
+                "operationId": "3efb096f87f8f5121f5f3a09f36fb420",
                 "requestBody": {},
                 "responses": {
                     "200": {
@@ -61,7 +119,7 @@
                     "Post"
                 ],
                 "summary": "Store a newly created post resource in storage",
-                "operationId": "3e6c251358d238d7fdb4f46bef74d8d5",
+                "operationId": "715eeccdd5d5a58c21dd61891223e903",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -182,7 +240,7 @@
                     "Post"
                 ],
                 "summary": "Create post resource.",
-                "operationId": "4a657e51a0066c64781851f2fd2651e2",
+                "operationId": "68eb607e387f7c5ea76af2596d29f700",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -250,7 +308,7 @@
                     "Post"
                 ],
                 "summary": "Display the specified post resource.",
-                "operationId": "d3910995cb542d02254c9fc6133cc10c",
+                "operationId": "95db749965aa33796e50f5b755d44771",
                 "parameters": [
                     {
                         "name": "post",
@@ -303,7 +361,7 @@
                     "Post"
                 ],
                 "summary": "Remove the specified post resource from storage.",
-                "operationId": "995630fb8f7510fb391745db0c073d23",
+                "operationId": "129dfa0fad8cde205dad3e860f0c4193",
                 "parameters": [
                     {
                         "name": "post",
@@ -343,7 +401,7 @@
                     "Post"
                 ],
                 "summary": "Update the specified resource in storage.",
-                "operationId": "d165dc367dcb61efe71591fffd1bb1aa",
+                "operationId": "26581515fe57d6dd19d7eab61e15cbca",
                 "parameters": [
                     {
                         "name": "post",
@@ -413,64 +471,6 @@
                     }
                 ]
             }
-        },
-        "/api/auth/login/": {
-            "post": {
-                "tags": [
-                    "Authorization"
-                ],
-                "summary": "User login and get token.",
-                "operationId": "068f12b93c65e63717e80c4e37a565fe",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "allOf": [
-                                    {
-                                        "properties": {
-                                            "email": {
-                                                "type": "string",
-                                                "example": "user@user.user"
-                                            },
-                                            "password": {
-                                                "type": "string",
-                                                "example": "password"
-                                            }
-                                        },
-                                        "type": "object"
-                                    }
-                                ]
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "401": {
-                        "description": "Unauthorized",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "access_token": {
-                                            "type": "string",
-                                            "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0L2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNjk5OTY1OTc5LCJleHAiOjE2OTk5Njk1NzksIm5iZiI6MTY5OTk2NTk3OSwianRpIjoiMWpVeVpGVWYzdlpZRnJDcyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.dlAUe2hCZSviHBlkUlTw_R8YGyhUUZx-cSyyfNey2Mc"
-                                        },
-                                        "type": {
-                                            "type": "string",
-                                            "example": "Bearer"
-                                        },
-                                        "expires_in": {
-                                            "type": "integer",
-                                            "example": 3600
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
         }
     },
     "components": {
@@ -480,5 +480,15 @@
                 "scheme": "bearer"
             }
         }
-    }
+    },
+    "tags": [
+        {
+            "name": "Authorization",
+            "description": "Authorization"
+        },
+        {
+            "name": "Post",
+            "description": "Post"
+        }
+    ]
 }

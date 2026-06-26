@@ -107,9 +107,16 @@ return [
             /**
              * analyser: defaults to \OpenApi\StaticAnalyser .
              *
+             * l5-swagger's own default only registers AttributeAnnotationFactory (PHP 8 attributes),
+             * which silently drops this project's existing @OA\... doc-comment annotations. Restore
+             * both factories so the legacy doc-comment style keeps working.
+             *
              * @see \OpenApi\scan
              */
-            'analyser' => null,
+            'analyser' => new \OpenApi\Analysers\ReflectionAnalyser([
+                new \OpenApi\Analysers\AttributeAnnotationFactory(),
+                new \OpenApi\Analysers\DocBlockAnnotationFactory(),
+            ]),
 
             /**
              * analysis: defaults to a new \OpenApi\Analysis .

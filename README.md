@@ -21,6 +21,41 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
+## Local Setup (Sail)
+
+This project targets PHP 8.2 (see `docker-compose.yml`). If your host PHP version/extensions don't match the lock file, bootstrap dependencies through a container instead of installing on the host:
+
+```bash
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -e COMPOSER_HOME=/var/www/html/.composer-cache-tmp \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    laravelsail/php82-composer:latest \
+    composer install --ignore-platform-reqs
+
+rm -rf .composer-cache-tmp
+```
+
+Create `.env` and adjust it for Sail's Docker network:
+
+```bash
+cp .env.example .env
+```
+
+- `DB_HOST=127.0.0.1` → `DB_HOST=mysql`
+- `REDIS_HOST=127.0.0.1` → `REDIS_HOST=redis`
+- If host port `3306` is already in use, add `FORWARD_DB_PORT=3307` (or another free port) — this only changes the host-side mapping, the app still connects to `mysql:3306` internally.
+
+Bring up the stack and finish provisioning:
+
+```bash
+./vendor/bin/sail up -d
+./vendor/bin/sail artisan key:generate
+./vendor/bin/sail artisan jwt:secret
+./vendor/bin/sail artisan migrate --force
+```
+
 ## Learning Laravel
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.

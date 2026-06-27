@@ -4,6 +4,8 @@ namespace Services\User\PostService\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 
+use Services\User\PostService\Contracts\PostServiceInterface;
+use Services\User\PostService\Http\DTOs\PostDTO;
 use Services\User\PostService\Http\Requests\StoreRequest;
 use Services\User\PostService\Http\Requests\UpdateRequest;
 use Services\User\PostService\Http\Resources\PostResource;
@@ -49,10 +51,9 @@ class PostController extends Controller
      *     ),
      * ),
      */
-    public function index()
+    public function index(PostServiceInterface $postService)
     {
-        $posts = Post::all();
-        return PostResource::collection($posts);
+        return PostResource::collection($postService->index());
     }
 
     /**
@@ -149,11 +150,10 @@ class PostController extends Controller
      *     ),
      * ),
      */
-    public function store(StoreRequest $request)
+    public function store(StoreRequest $request, PostServiceInterface $postService)
     {
-        $data = $request->validated();
-        $post = Post::create($data);
-        return PostResource::make($post);
+        $postDto = new PostDTO($request->validated());
+        return PostResource::make($postService->store($postDto));
     }
 
     /**
@@ -235,13 +235,10 @@ class PostController extends Controller
      *     ),
      * ),
      */
-    public function update(UpdateRequest $request, Post $post)
+    public function update(UpdateRequest $request, Post $post, PostServiceInterface $postService)
     {
-        $data = $request->validated();
-        $post->update($data);
-//        $post = $post->fresh();
-
-        return PostResource::make($post);
+        $postDto = new PostDTO($request->validated());
+        return PostResource::make($postService->update($post, $postDto));
     }
 
     /**
@@ -268,9 +265,9 @@ class PostController extends Controller
      *     ),
      * ),
      */
-    public function destroy(Post $post)
+    public function destroy(Post $post, PostServiceInterface $postService)
     {
-        $post->delete();
+        $postService->destroy($post);
         return response()->json(array('message' => 'Delete'));
     }
 }

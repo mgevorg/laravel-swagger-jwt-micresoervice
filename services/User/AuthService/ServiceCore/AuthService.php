@@ -6,6 +6,8 @@ namespace Services\User\AuthService\ServiceCore;
 use Illuminate\Support\Facades\Config;
 use Services\User\AuthService\Contracts\AuthServiceInterface;
 use Services\User\AuthService\Http\DTOs\UserAuthDTO;
+use Services\User\AuthService\Http\Resources\TokenResource;
+use Services\User\AuthService\Http\Resources\UserResource;
 
 class AuthService implements AuthServiceInterface
 {
@@ -19,11 +21,12 @@ class AuthService implements AuthServiceInterface
 
     public function user()
     {
-        return response()->json(auth('api')->user());
+        return UserResource::make(auth('api')->user());
     }
     public function logout()
     {
-        return response()->json(auth('api')->logout());
+        auth('api')->logout();
+        return response()->json(['message' => 'Logged out']);
     }
     public function refresh()
     {
@@ -32,10 +35,10 @@ class AuthService implements AuthServiceInterface
 
     protected function respondWithToken($token)
     {
-        return response()->json([
+        return TokenResource::make([
             'access_token' => $token,
             'type' => 'bearer',
             'expires_in' => Config::get('jwt.ttl') * 6000
-        ], 401);
+        ]);
     }
 }

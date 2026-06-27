@@ -12,7 +12,7 @@ class PostService implements PostServiceInterface
 {
     public function index(): Collection
     {
-        return Post::all();
+        return Post::get();
     }
 
     public function store(PostDTO $postDto): Post

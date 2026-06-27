@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Services\User\PostService\Http\DTOs;
+namespace App\Http\DTOs;
 
 class BaseDTO
 {

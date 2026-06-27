@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Services\User\AuthService\Http\DTOs;
 
+use App\Http\DTOs\BaseDTO;
 
 class UserRegisterDTO extends BaseDTO
 {

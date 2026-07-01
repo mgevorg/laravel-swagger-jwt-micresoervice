@@ -102,3 +102,23 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+Requirements
+php8.5+
+
+sudo add-apt-repository ppa:ondrej/php -y
+sudo apt update
+sudo apt install php8.5 php8.5-cli -y
+sudo apt install -y php8.5-common php8.5-mysql php8.5-xml php8.5-xmlrpc php8.5-curl php8.5-gd php8.5-imagick php8.5-cli php8.5-dev php8.5-imap php8.5-mbstring php8.5-soap php8.5-zip php8.5-intl
+
+#sudo update-alternatives --set phar /usr/bin/phar8.5
+#sudo update-alternatives --set phar.phar /usr/bin/phar.phar8.5
+#sudo update-alternatives --set php /usr/bin/php8.5
+composer install
+./vendor/bin/sail up -d --build
+./vendor/bin/sail artisan key:generate
+./vendor/bin/sail artisan jwt:secret
+./vendor/bin/sail artisan migrate --force
+./vendor/bin/sail artisan l5-swagger:generate
+

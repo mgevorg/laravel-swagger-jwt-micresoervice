@@ -12,27 +12,10 @@ $app = Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->validateCsrfTokens(except: ['/api/*']);
+        $middleware->preventRequestForgery(except: ['/api/*']);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();
-
-$app->bind(
-    Services\User\AuthService\Contracts\AuthServiceInterface::class,
-    Services\User\AuthService\ServiceCore\AuthService::class,
-);
-$app->bind(
-    'services.user.auth-service',
-    Services\User\AuthService\Contracts\AuthServiceInterface::class
-);
-$app->bind(
-    Services\User\PostService\Contracts\PostServiceInterface::class,
-    Services\User\PostService\ServiceCore\PostService::class,
-);
-$app->bind(
-    'services.user.post-service',
-    Services\User\PostService\Contracts\PostServiceInterface::class
-);
 
 return $app;

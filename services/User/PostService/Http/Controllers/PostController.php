@@ -268,6 +268,6 @@ class PostController extends Controller
     public function destroy(Post $post, PostServiceInterface $postService)
     {
         $postService->destroy($post);
-        return response()->json(array('message' => 'Delete'));
+        return response()->json(['message' => 'Delete']);
     }
 }

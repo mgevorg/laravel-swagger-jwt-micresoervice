@@ -10,6 +10,8 @@ interface PostServiceInterface
 {
     public function index(): Collection;
 
+    public function show(Post $post): Post;
+
     public function store(PostDTO $postDto): Post;
 
     public function update(Post $post, PostDTO $postDto): Post;

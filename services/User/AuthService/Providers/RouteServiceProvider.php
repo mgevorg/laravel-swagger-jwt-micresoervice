@@ -18,8 +18,6 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Define your route model bindings, pattern filters, etc.
-     *
-     * @param \Illuminate\Routing\Router $router
      */
     public function boot()
     {
@@ -28,8 +26,6 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Define the routes for the application.
-     *
-     * @param \Illuminate\Routing\Router $router
      */
     public function map()
     {

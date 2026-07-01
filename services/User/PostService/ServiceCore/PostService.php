@@ -15,6 +15,11 @@ class PostService implements PostServiceInterface
         return Post::get();
     }
 
+    public function show(Post $post): Post
+    {
+        return $post;
+    }
+
     public function store(PostDTO $postDto): Post
     {
         return Post::create($postDto->toArray());

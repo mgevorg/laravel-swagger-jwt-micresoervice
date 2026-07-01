@@ -7,13 +7,6 @@ use App\Http\DTOs\BaseDTO;
 
 class PostDTO extends BaseDTO
 {
-    public string $title;
-    public int $likes;
-
-    public function __construct(array $arguments)
-    {
-        foreach($arguments as $key => $value) {
-            $this->$key = $value;
-        }
-    }
+    public readonly string $title;
+    public readonly int $likes;
 }

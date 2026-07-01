@@ -5,12 +5,15 @@ namespace App\Http\DTOs;
 
 class BaseDTO
 {
-    public function toArray()
+    public function __construct(array $arguments)
     {
-        $dataArray = [];
-        foreach(get_object_vars($this) as $key => $value) {
-            $dataArray[$key] = $value;
+        foreach ($arguments as $key => $value) {
+            $this->$key = $value;
         }
-        return $dataArray;
+    }
+
+    public function toArray(): array
+    {
+        return get_object_vars($this);
     }
 }

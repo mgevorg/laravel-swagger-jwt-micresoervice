@@ -146,7 +146,7 @@ class PostController extends Controller
      *                    @OA\Property(property="title", type="string", example="Some Title"),
      *                    @OA\Property(property="likes", type="string", example=321),
      *               ),
-     *          ),`
+     *          ),
      *     ),
      * ),
      */

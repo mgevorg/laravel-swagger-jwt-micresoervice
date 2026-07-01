@@ -54,7 +54,10 @@ Bring up the stack and finish provisioning:
 ./vendor/bin/sail artisan key:generate
 ./vendor/bin/sail artisan jwt:secret
 ./vendor/bin/sail artisan migrate --force
+./vendor/bin/sail artisan l5-swagger:generate
 ```
+
+http://localhost/api/documentation
 
 ## Learning Laravel
 
